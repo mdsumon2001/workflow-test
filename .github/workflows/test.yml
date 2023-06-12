@@ -46,8 +46,9 @@ jobs:
       # Downloading Tools
       - name: Prepare Repo
         run: |
+          pacman -Sy openssh
           #cd $WDIR
-          cd ~
+          cd ~ 
           mkdir ~/.bin
           curl https://storage.googleapis.com/git-repo-downloads/repo > ~/.bin/repo
           chmod a+x ~/.bin/repo
