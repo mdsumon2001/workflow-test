@@ -39,7 +39,7 @@ jobs:
     container:
       image: ghcr.io/sushrut1101/docker:arch
       options:
-        --user 1001:1001
+        --user 0:0
         -v "${{github.workspace}}":"${{github.workspace}}"
     steps:
       - uses: actions/checkout@v3
