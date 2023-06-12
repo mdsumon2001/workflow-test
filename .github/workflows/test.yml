@@ -31,8 +31,12 @@ jobs:
           remove-codeql: 'true'
       - name: Free Space After Clearing
         run: |
+          cd $WDIR
           echo "Free space:"
           df -h
+          echo "Current Directory"
+          pwd
+          ls
   build:
     needs: slim_build
     runs-on: ubuntu-latest
@@ -47,10 +51,8 @@ jobs:
       - name: Prepare Repo
         run: |
           cd $WDIR
-          mkdir ~/.bin
-          curl https://storage.googleapis.com/git-repo-downloads/repo > ~/.bin/repo
-          chmod a+x ~/.bin/repo
-          echo "export PATH=~/bin:$PATH" >> ~/.bashrc
+          curl --create-dirs -L -o /usr/local/bin/repo -O -L https://storage.googleapis.com/git-repo-downloads/repo
+          chmod a+rx /usr/local/bin/repo
       # Sync Repo (You Can Edit This!)
       - name: Sync Repo
         run: |
