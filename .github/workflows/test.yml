@@ -46,9 +46,12 @@ jobs:
       # Downloading Tools
       - name: Prepare Repo
         run: |
-          cd $WDIR
-          sudo curl --create-dirs -L -o /usr/local/bin/repo -O -L https://storage.googleapis.com/git-repo-downloads/repo
-          sudo chmod a+rx /usr/local/bin/repo
+          #cd $WDIR
+          cd ~
+          mkdir ~/.bin
+          curl https://storage.googleapis.com/git-repo-downloads/repo > ~/.bin/repo
+          chmod a+x ~/.bin/repo
+          echo "export PATH=~/bin:$PATH" >> ~/.bashrc
       # Sync Repo (You Can Edit This!)
       - name: Sync Repo
         run: |
