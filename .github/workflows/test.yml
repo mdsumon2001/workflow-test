@@ -10,10 +10,9 @@ on:
 env:
   WDIR: ${{github.workspace}}
 jobs:
-  slim_build:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
       - uses: rokibhasansagar/slimhub_actions@main
       - name: Maximize build space
         uses: easimon/maximize-build-space@master
@@ -33,9 +32,6 @@ jobs:
           echo "Current Directory"
           pwd
           ls
-  build:
-    needs: slim_build
-    runs-on: slim_build
     container:
       image: ghcr.io/sushrut1101/docker:arch
       options:
