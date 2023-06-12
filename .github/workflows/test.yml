@@ -7,7 +7,8 @@ on:
   pull_request:
     branches: [ "main" ]
   workflow_dispatch:
-
+env:
+  WDIR: ${{github.workspace}}
 jobs:
   slim_build:
     runs-on: ubuntu-latest
@@ -37,12 +38,15 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/sushrut1101/docker:arch
+      options:
+        --user 1001:1001
+        -v "${{github.workspace}}":"${{github.workspace}}"
     steps:
       - uses: actions/checkout@v3
       # Downloading Tools
       - name: Prepare Repo
         run: |
-          cd ~
+          cd $WDIR
           mkdir ~/.bin
           curl https://storage.googleapis.com/git-repo-downloads/repo > ~/.bin/repo
           chmod a+x ~/.bin/repo
@@ -50,14 +54,14 @@ jobs:
       # Sync Repo (You Can Edit This!)
       - name: Sync Repo
         run: |
-          cd ~
+          cd $WDIR
           repo init --depth=1 --no-repo-verify -u https://github.com/alphadroid-project/manifest -b alpha-13 --git-lfs -g default,-mips,-darwin,-notdefault
           git clone https://github.com/mitsu00/local_manifest.git --depth 1 -b alpha .repo/local_manifests
           repo sync -c --no-clone-bundle --optimized-fetch --prune --force-sync --fail-fast -j$(nproc --all)
       # Build Test (You Can Edit This!)
       - name: Build Test
         run: |
-          cd ~
+          cd $WDIR
           . build/envsetup.sh
           export WITH_GMS=0
           export ALLOW_MISSING_DEPENDENCIES=true
