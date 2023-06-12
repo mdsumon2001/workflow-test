@@ -46,7 +46,7 @@ jobs:
       # Downloading Tools
       - name: Prepare Repo
         run: |
-          pacman -Sy openssh
+          #pacman -Sy openssh
           #cd $WDIR
           cd ~ 
           mkdir ~/.bin
