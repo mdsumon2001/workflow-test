@@ -35,7 +35,7 @@ jobs:
           ls
   build:
     needs: slim_build
-    runs-on: ubuntu-latest
+    runs-on: slim_build
     container:
       image: ghcr.io/sushrut1101/docker:arch
       options:
@@ -53,6 +53,8 @@ jobs:
           curl https://storage.googleapis.com/git-repo-downloads/repo > ~/.bin/repo
           chmod a+x ~/.bin/repo
           echo "export PATH=~/bin:$PATH" >> ~/.bashrc
+          echo "Free Space:"
+          df -h
       # Sync Repo (You Can Edit This!)
       - name: Sync Repo
         run: |
