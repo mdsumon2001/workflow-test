@@ -58,9 +58,9 @@ jobs:
           export SUBARCH=arm64
           make O=out ARCH=arm64 merlin_defconfig
           make -j$(nproc --all) O=out ARCH=arm64 CC=clang READELF=llvm-readelf OBJCOPY=llvm-objcopy AS=llvm-as LD=ld.lld NM=llvm-nm OBJDUMP=llvm-objdump STRIP=llvm-strip CROSS_COMPILE=aarch64-linux-gnu- CROSS_COMPILE_ARM32=arm-linux-gnueabi-
-     - name: Upload Kernel File
-       #if: env.CHECK_FILE_IS_OK == 'true'
-       uses: actions/upload-artifact@v3
-       with:
-         name: Image.gz-dtb
-         path: $GITHUB_WORKSPACE/kernel/out/arch/arm64/boot/Image.gz-dtb
+      - name: Upload Kernel File
+        #if: env.CHECK_FILE_IS_OK == 'true'
+        uses: actions/upload-artifact@v3
+        with:
+          name: Image.gz-dtb
+          path: $GITHUB_WORKSPACE/kernel/out/arch/arm64/boot/Image.gz-dtb
