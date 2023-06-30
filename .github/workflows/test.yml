@@ -56,4 +56,5 @@ jobs:
           export PATH=$GITHUB_WORKSPACE/clang/bin:$PATH
           export ARCH=arm64
           export SUBARCH=arm64
+          make O=out ARCH=arm64 merlin_defconfig
           make -j$(nproc --all) O=out ARCH=arm64 CC=clang READELF=llvm-readelf OBJCOPY=llvm-objcopy AS=llvm-as LD=ld.lld NM=llvm-nm OBJDUMP=llvm-objdump STRIP=llvm-strip CROSS_COMPILE=aarch64-linux-gnu- CROSS_COMPILE_ARM32=arm-linux-gnueabi-
