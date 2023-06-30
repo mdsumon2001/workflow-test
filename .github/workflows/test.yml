@@ -36,43 +36,24 @@ jobs:
       - name: Install Dependency
         run: |
           sudo apt update
-          sudo apt install -y openssh-server screen python3 git openjdk-8-jdk android-tools-adb bc \
-          bison build-essential curl flex g++-multilib gcc-multilib gnupg gperf imagemagick \
-          lib32ncurses-dev lib32readline-dev lib32z1-dev  liblz4-tool libncurses5-dev libsdl1.2-dev \
-          libssl-dev libxml2 libxml2-utils lzop pngcrush rsync schedtool squashfs-tools xsltproc \
-          yasm zip zlib1g-dev libtinfo5 libncurses5
-      # Downloading Tools
-      - name: Prepare Repo
+          sudo apt-get install git ccache automake flex lzop bison gperf build-essential zip curl zlib1g-dev g++-multilib libxml2-utils bzip2 libbz2-dev libbz2-1.0 libghc-bzlib-dev squashfs-tools pngcrush schedtool dpkg-dev liblz4-tool make optipng maven libssl-dev pwgen libswitch-perl policycoreutils minicom libxml-sax-base-perl libxml-simple-perl bc libc6-dev-i386 lib32ncurses5-dev libx11-dev lib32z-dev libgl1-mesa-dev xsltproc unzip device-tree-compiler python2 python3
+      # Clone Kernel
+      - name: Clone Kernel Source
         run: |
-          #pacman -Sy openssh
-          #cd $WDIR
-          cd ~ 
-          #mkdir ~/.bin
-          #curl https://storage.googleapis.com/git-repo-downloads/repo > ~/.bin/repo
-          #chmod a+x ~/.bin/repo
-          #echo "export PATH=~/bin:$PATH" >> ~/.bashrc
-          sudo curl --create-dirs -L -o /usr/local/bin/repo -O -L https://storage.googleapis.com/git-repo-downloads/repo
-          sudo chmod a+rx /usr/local/bin/repo
-          echo "Free Space:"
-          df -h
-      # Sync Repo (You Can Edit This!)
-      - name: Sync Repo
+          cd $GITHUB_WORKSPACE
+          git clone https://github.com/ozipoetra/oc_a13r -b a13r kernel
+      # Download Clang
+      - name: Clone Clang
         run: |
-          cd $WDIR
-          repo init --depth=1 --no-repo-verify -u https://github.com/alphadroid-project/manifest -b alpha-13 --git-lfs -g default,-mips,-darwin,-notdefault
-          git clone https://github.com/mitsu00/local_manifest.git --depth 1 -b alpha .repo/local_manifests
-          repo sync -c --no-clone-bundle --optimized-fetch --prune --force-sync --fail-fast -j$(nproc --all)
+          cd $GITHUB_WORKSPACE
+          git clone https://gitlab.com/mcdofrenchfreis/android-clang-14.0.7.git --depth=1 clang
       # Build Test (You Can Edit This!)
-      - name: Build Test
+      - name: Build Kernel
         run: |
-          cd $WDIR
-          . build/envsetup.sh
-          export WITH_GMS=0
-          export ALLOW_MISSING_DEPENDENCIES=true
-          export BUILD_USERNAME=ozipoetra
-          export BUILD_HOSTNAME=ozip.my.id
-          export TZ=Asia/Jakarta
-          lunch lineage_merlinx-user
-          mka sepolicy
-          mka bootimage
-          mka init
+          cd $GITHUB_WORKSPACE/kernel
+          export KBUILD_BUILD_HOST=ozip.my.id
+          export KBUILD_BUILD_USER=ozipoetra
+          export PATH=$GITHUB_WORKSPACE/clang/bin:$PATH
+          export ARCH=arm64
+          export SUBARCH=arm64
+          make -j$(nproc --all) O=out ARCH=arm64 CC=clang READELF=llvm-readelf OBJCOPY=llvm-objcopy AS=llvm-as LD=ld.lld NM=llvm-nm OBJDUMP=llvm-objdump STRIP=llvm-strip CROSS_COMPILE=aarch64-linux-gnu- CROSS_COMPILE_ARM32=arm-linux-gnueabi-
