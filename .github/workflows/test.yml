@@ -30,6 +30,7 @@ jobs:
       # Build Test (You Can Edit This!)
       - name: Build Kernel
         run: |
+          ccache -M 10G
           cd $GITHUB_WORKSPACE/kernel
           export KBUILD_BUILD_HOST=ozip.my.id
           export KBUILD_BUILD_USER=ozipoetra
