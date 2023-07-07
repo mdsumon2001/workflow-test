@@ -18,7 +18,7 @@ jobs:
       - name: Clone Kernel Source
         run: |
           cd $GITHUB_WORKSPACE
-          git clone https://github.com/ozipoetra/oc_a13r -b a13r --depth=1 --recursive kernel
+          git clone https://github.com/ozipoetra/kernel_mt6768 -b main --depth=1 --recursive kernel
       # Download Clang
       - name: Clone Clang
         run: |
