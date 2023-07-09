@@ -27,7 +27,7 @@ jobs:
           #wget -q https://github.com/mitsu00/build_test/releases/download/clang/clang.zip
           #unzip clang.zip -d clang
           #rm clang.zip
-          git clone https://gitlab.com/RahulPalXDA/clang.git -b r383902b1 --depth=1 clang
+          git clone https://github.com/kdrag0n/proton-clang -b master --depth=1 clang
           #git clone https://gitlab.com/mcdofrenchfreis/android-clang-14.0.7.git --depth=1 clang
       # Build Test (You Can Edit This!)
       - name: Build Kernel
