@@ -18,7 +18,7 @@ jobs:
       - name: Clone Kernel Source
         run: |
           cd $GITHUB_WORKSPACE
-          git clone https://github.com/mitsu00/merlin-r-oss -b test --depth=1 kernel
+          git clone https://github.com/Arafattex/shas-dream-oc-mt6768 -b eleven --depth=1 kernel
           #git clone https://github.com/ozipoetra/kernel_mt6768 -b main --depth=1 --recursive kernel
       # Download Clang
       - name: Clone Clang
