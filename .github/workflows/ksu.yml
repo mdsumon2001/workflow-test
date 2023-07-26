@@ -16,7 +16,7 @@ jobs:
       run: |
         cd $GITHUB_WORKSPACE
         #git clone https://github.com/vijaymalav564/vortex-clang.git -b master --depth=1 clang-14
-        git clone --depth=1 https://gitlab.com/mcdofrenchfreis/neutron-clang-mirror.git -b master clang
+        git clone --depth=1 https://github.com/Neutron-Toolchains/neutron-clang.git -b Neutron-14 clang
         #git clone --depth=1 https://github.com/LineageOS/android_prebuilts_gcc_linux-x86_aarch64_aarch64-linux-android-4.9 los-4.9-64
         #git clone --depth=1 https://github.com/LineageOS/android_prebuilts_gcc_linux-x86_arm_arm-linux-androideabi-4.9 los-4.9-32
 
