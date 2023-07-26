@@ -18,7 +18,7 @@ jobs:
         #unzip clang.zip -d clang
         #rm clang.zip
         #git clone https://github.com/vijaymalav564/vortex-clang.git -b master --depth=1 clang
-        git clone --depth=1 https://gitlab.com/LeCmnGend/proton-clang.git -b clang-17 clang
+        git clone --depth=1 https://gitlab.com/LeCmnGend/proton-clang.git -b clang-16 clang
         git clone --depth=1 https://github.com/LineageOS/android_prebuilts_gcc_linux-x86_aarch64_aarch64-linux-android-4.9 los-4.9-64
         git clone --depth=1 https://github.com/LineageOS/android_prebuilts_gcc_linux-x86_arm_arm-linux-androideabi-4.9 los-4.9-32
 
@@ -47,6 +47,7 @@ jobs:
         export PATH=$GITHUB_WORKSPACE/clang/bin:$PATH
         export ARCH=arm64
         export SUBARCH=arm64
+        export CLANG_TRIPLE=aarch64-linux-gnu-
         export CROSS_COMPILE=$GITHUB_WORKSPACE/los-4.9-64/bin/aarch64-linux-android-
         export CROSS_COMPILE_COMPAT=$GITHUB_WORKSPACE/los-4.9-32/bin/arm-linux-androideabi-
         export CROSS_COMPILE_ARM32=$GITHUB_WORKSPACE/los-4.9-32/bin/arm-linux-androideabi-
