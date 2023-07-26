@@ -15,10 +15,10 @@ jobs:
     - name: Download Clang Toolchain
       run: |
         cd $GITHUB_WORKSPACE
-        wget -q https://github.com/mitsu00/build_test/releases/download/clang/clang.zip
-        unzip clang.zip -d clang
-        rm clang.zip
-        #git clone https://github.com/vijaymalav564/vortex-clang.git -b master --depth=1 clang-14
+        #wget -q https://github.com/mitsu00/build_test/releases/download/clang/clang.zip
+        #unzip clang.zip -d clang
+        #rm clang.zip
+        git clone https://github.com/vijaymalav564/vortex-clang.git -b master --depth=1 clang
         #git clone --depth=1 https://github.com/Neutron-Toolchains/neutron-clang.git -b Neutron-14 clang
         #git clone --depth=1 https://github.com/LineageOS/android_prebuilts_gcc_linux-x86_aarch64_aarch64-linux-android-4.9 los-4.9-64
         #git clone --depth=1 https://github.com/LineageOS/android_prebuilts_gcc_linux-x86_arm_arm-linux-androideabi-4.9 los-4.9-32
@@ -50,7 +50,7 @@ jobs:
         export SUBARCH=arm64
         export KBUILD_BUILD_HOST=ozip.my.id
         export KBUILD_BUILD_USER=mitsuaa
-        make O=out ARCH=arm64 CC=clang AR=llvm-ar NM=llvm-nm OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump STRIP=llvm-strip merlin_defconfig
+        make O=out ARCH=arm64 merlin_defconfig
         make -j$(nproc --all) O=out ARCH=arm64 CC=clang CROSS_COMPILE=aarch64-linux-gnu- CROSS_COMPILE_ARM32=arm-linux-gnueabi- AR=llvm-ar AS=llvm-as LD=ld.lld NM=llvm-nm OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump STRIP=llvm-strip
 
     - name: Make Anykernel3
