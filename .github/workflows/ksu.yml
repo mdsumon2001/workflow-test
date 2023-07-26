@@ -41,7 +41,7 @@ jobs:
     - name: Build Kernel
       run: |
         cd $GITHUB_WORKSPACE/android-kernel
-        PATH=$GITHUB_WORKSPACE/clang/bin:$PATH
+        export PATH=$GITHUB_WORKSPACE/clang/bin:$PATH
         export ARCH=arm64
         export SUBARCH=arm64
         export KBUILD_BUILD_HOST=ozip.my.id
