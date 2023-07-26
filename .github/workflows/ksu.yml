@@ -1,4 +1,4 @@
-name: Build KSU
+name: Build Kernel
 on:
   watch:
     types: [started]
@@ -13,37 +13,35 @@ jobs:
     if: github.event.repository.owner.id == github.event.sender.id
     steps:
     - uses: actions/checkout@v3
-    - name: Setup build kernel environment
-      run: |
-        mkdir -p $GITHUB_WORKSPACE/kernel_workspace
 
     - name: Download Clang Toolchain
       run: |
+        cd $GITHUB_WORKSPACE
         mkdir clang
         #git clone https://github.com/vijaymalav564/vortex-clang.git -b master --depth=1 clang
         git clone https://github.com/GengKapak/GengKapak-clang -b 14 --depth=1 clang
 
     - name: Download kernel source
       run: |
-        cd $GITHUB_WORKSPACE/kernel_workspace
+        cd $GITHUB_WORKSPACE
         git clone https://github.com/mt6768-dev/android_kernel_xiaomi_mt6768 -b lineage-20 android-kernel --depth=1
 
     - name: Kernel patch
       run: |
-        cd $GITHUB_WORKSPACE/kernel_workspace
-        git clone https://github.com/Arafattex/KernelSU_Action_mt6768 -b Lancelot-13.0 pt
+        cd $GITHUB_WORKSPACE
+        git clone https://github.com/Arafattex/workflow-test -b main patchsu
         cd android-kernel
-        git apply $GITHUB_WORKSPACE/kernel_workspace/pt/KernelSU.patch
+        git apply $GITHUB_WORKSPACE/patchsu/KernelSU.patch
   
     - name: Setup KernelSU
       run: |
-        cd $GITHUB_WORKSPACE/kernel_workspace/android-kernel
+        cd $GITHUB_WORKSPACE/android-kernel
         curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s main
 
     - name: Build Kernel
       run: |
-        cd $GITHUB_WORKSPACE/kernel_workspace/android-kernel
-        export PATH=$GITHUB_WORKSPACE/clang/bin:$PATH
+        cd $GITHUB_WORKSPACE/android-kernel
+        PATH=$GITHUB_WORKSPACE/clang/bin:$PATH
         export ARCH=arm64
         export SUBARCH=arm64
         export KBUILD_COMPILER_STRING="$(clang --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g' -e 's/[[:space:]]*$//')"
@@ -54,7 +52,7 @@ jobs:
 
     - name: Make Anykernel3
       run: |
-        cd $GITHUB_WORKSPACE/kernel_workspace
+        cd $GITHUB_WORKSPACE
         git clone https://github.com/osm0sis/AnyKernel3
           sed -i 's/do.devicecheck=1/do.devicecheck=0/g' AnyKernel3/anykernel.sh
           sed -i 's!block=/dev/block/platform/omap/omap_hsmmc.0/by-name/boot;!block=auto;!g' AnyKernel3/anykernel.sh
@@ -66,7 +64,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: Image.gz-dtb
-        path: kernel_workspace/android-kernel/out/arch/arm64/boot/Image.gz-dtb
+        path: android-kernel/out/arch/arm64/boot/Image.gz-dtb
 
     - name: Upload AnyKernel3
       uses: actions/upload-artifact@v3
