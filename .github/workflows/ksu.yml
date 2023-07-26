@@ -49,7 +49,7 @@ jobs:
         make O=out ARCH=arm64 CC=clang merlin_defconfig
         make -j$(nproc --all) O=out ARCH=arm64 savedefconfig
         cp -f out/defconfig arch/arm64/configs/merlin_defconfig
-        make -j$(nproc --all) O=out ARCH=arm64 CC=clang READELF=llvm-readelf OBJCOPY=llvm-objcopy AS=llvm-as LD=ld.lld NM=llvm-nm OBJDUMP=llvm-objdump STRIP=llvm-strip CROSS_COMPILE=aarch64-linux-gnu- CROSS_COMPILE_ARM32=arm-linux-gnueabi-
+        make -j$(nproc --all) O=out ARCH=arm64 CC=clang READELF=llvm-readelf OBJCOPY=llvm-objcopy AS=llvm-as LD=ld.lld NM=llvm-nm OBJDUMP=llvm-objdump STRIP=llvm-strip LLVM=1 CLANG_TRIPLE=aarch64-linux-gnu- CROSS_COMPILE="${PWD}/los-4.9-64/bin/aarch64-linux-android-" CROSS_COMPILE_ARM32="${PWD}/los-4.9-32/bin/arm-linux-androideabi-" CONFIG_NO_ERROR_ON_MISMATCH=y
 
     - name: Make Anykernel3
       run: |
