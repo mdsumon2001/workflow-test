@@ -50,7 +50,7 @@ jobs:
         make O=out ARCH=arm64 CC=clang HOSTCC=clang AR=llvm-ar NM=llvm-nm OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump STRIP=llvm-strip merlin_defconfig
         make -j$(nproc --all) O=out ARCH=arm64 CC=clang HOSTCC=clang AR=llvm-ar NM=llvm-nm OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump STRIP=llvm-strip savedefconfig
         cp -f out/defconfig arch/arm64/configs/merlin_defconfig
-        make -j$(nproc --all) O=out ARCH=arm64 CC="clang" HOSTCC=clang CLANG_TRIPLE=aarch64-linux-gnu- CROSS_COMPILE="$GITHUB_WORKSPACE/clang-14/bin/aarch64-linux-android-" CROSS_COMPILE_ARM32="$GITHUB_WORKSPACE/clang-14/bin/arm-linux-androideabi-" LLVM=1 AR=llvm-ar LD=ld.lld NM=llvm-nm OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump STRIP=llvm-strip CONFIG_NO_ERROR_ON_MISMATCH=y
+        make -j$(nproc --all) O=out ARCH=arm64 CC="clang" HOSTCC=clang CLANG_TRIPLE=aarch64-linux-gnu- CROSS_COMPILE=$GITHUB_WORKSPACE/clang-14/bin/aarch64-linux-android- CROSS_COMPILE_ARM32=$GITHUB_WORKSPACE/clang-14/bin/arm-linux-androideabi- LLVM=1 AR=llvm-ar AS=$GITHUB_WORKSPACE/clang-14/bin/llvm-as LD=ld.lld NM=llvm-nm OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump STRIP=llvm-strip CONFIG_NO_ERROR_ON_MISMATCH=y
 
     - name: Make Anykernel3
       run: |
