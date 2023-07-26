@@ -26,7 +26,8 @@ jobs:
     - name: Download kernel source
       run: |
         cd $GITHUB_WORKSPACE
-        git clone https://github.com/LineageOS/android_kernel_xiaomi_mt6768 -b lineage-20 android-kernel --depth=1
+        git clone https://github.com/Eagle-Projekt/kernel_xiaomi_mt6768 -b lineage-20 --depth=1 android-kernel
+        #git clone https://github.com/LineageOS/android_kernel_xiaomi_mt6768 -b lineage-20 android-kernel --depth=1
 
     - name: Kernel patch
       run: |
