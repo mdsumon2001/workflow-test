@@ -41,6 +41,7 @@ jobs:
     - name: Build Kernel
       run: |
         cd $GITHUB_WORKSPACE/android-kernel
+        export LC_ALL=C
         export PATH=$GITHUB_WORKSPACE/clang/bin:$PATH
         export ARCH=arm64
         export SUBARCH=arm64
