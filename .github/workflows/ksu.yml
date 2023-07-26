@@ -58,14 +58,14 @@ jobs:
         export AR=llvm-ar
         export NM=llvm-nm
         export OBJCOPY=llvm-objcopy
-        export OBJDUMP=llvm-objdump
+        #export OBJDUMP=llvm-objdump
         export STRIP=llvm-strip
         export KBUILD_BUILD_HOST=ozip.my.id
         export KBUILD_BUILD_USER=mitsuaa
         make clean
         make mrproper
         make O=out merlin_defconfig
-        make -j$(nproc --all) O=out
+        make -j$(nproc --all) O=out CC=gcc
 
     - name: Make Anykernel3
       run: |
