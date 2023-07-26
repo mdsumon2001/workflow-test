@@ -15,10 +15,10 @@ jobs:
     - name: Download Clang Toolchain
       run: |
         cd $GITHUB_WORKSPACE
-        #git clone https://github.com/vijaymalav564/vortex-clang.git -b master --depth=1 clang
+        git clone https://github.com/vijaymalav564/vortex-clang.git -b master --depth=1 clang-14
         git clone --depth=1 https://gitlab.com/LeCmnGend/proton-clang -b clang-17 clang
-        git clone --depth=1 https://github.com/LineageOS/android_prebuilts_gcc_linux-x86_aarch64_aarch64-linux-android-4.9 los-4.9-64
-        git clone --depth=1 https://github.com/LineageOS/android_prebuilts_gcc_linux-x86_arm_arm-linux-androideabi-4.9 los-4.9-32
+        #git clone --depth=1 https://github.com/LineageOS/android_prebuilts_gcc_linux-x86_aarch64_aarch64-linux-android-4.9 los-4.9-64
+        #git clone --depth=1 https://github.com/LineageOS/android_prebuilts_gcc_linux-x86_arm_arm-linux-androideabi-4.9 los-4.9-32
 
 
     - name: Download kernel source
@@ -50,7 +50,7 @@ jobs:
         make O=out ARCH=arm64 CC=clang HOSTCC=clang AR=llvm-ar NM=llvm-nm OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump STRIP=llvm-strip merlin_defconfig
         make -j$(nproc --all) O=out ARCH=arm64 CC=clang HOSTCC=clang AR=llvm-ar NM=llvm-nm OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump STRIP=llvm-strip savedefconfig
         cp -f out/defconfig arch/arm64/configs/merlin_defconfig
-        make -j$(nproc --all) O=out ARCH=arm64 CC="clang" HOSTCC=clang CLANG_TRIPLE=aarch64-linux-gnu- CROSS_COMPILE="${PWD}/los-4.9-64/bin/aarch64-linux-android-" CROSS_COMPILE_ARM32="${PWD}/los-4.9-32/bin/arm-linux-androideabi-" LLVM=1 AR=llvm-ar LD=ld.lld NM=llvm-nm OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump STRIP=llvm-strip CONFIG_NO_ERROR_ON_MISMATCH=y
+        make -j$(nproc --all) O=out ARCH=arm64 CC="clang" HOSTCC=clang CLANG_TRIPLE=aarch64-linux-gnu- CROSS_COMPILE="$GITHUB_WORKSPACE/clang-14/bin/aarch64-linux-android-" CROSS_COMPILE_ARM32="$GITHUB_WORKSPACE/clang-14/bin/arm-linux-androideabi-" LLVM=1 AR=llvm-ar LD=ld.lld NM=llvm-nm OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump STRIP=llvm-strip CONFIG_NO_ERROR_ON_MISMATCH=y
 
     - name: Make Anykernel3
       run: |
