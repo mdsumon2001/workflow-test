@@ -16,6 +16,7 @@ jobs:
       run: |
         cd $GITHUB_WORKSPACE
         git clone --depth=1 https://github.com/mvaisakh/gcc-arm64.git -b gcc-master gcc
+        git clone --depth=1 https://github.com/mvaisakh/gcc-arm.git -b gcc-master gcc32
         #wget -q https://github.com/mitsu00/build_test/releases/download/clang/clang.zip
         #unzip clang.zip -d clang
         #rm clang.zip
@@ -50,6 +51,13 @@ jobs:
         export ARCH=arm64
         export SUBARCH=arm64
         export CROSS_COMPILE=$GITHUB_WORKSPACE/gcc/bin/aarch64-elf-
+        export CROSS_COMPILE_ARM32=$GITHUB_WORKSPACE/gcc32/bin/arm-eabi-
+        export CC=gcc
+        export AR=llvm-ar
+        export NM=llvm-nm
+        export OBJCOPY=llvm-objcopy
+        export OBJDUMP=llvm-objdump
+        export STRIP=llvm-strip
         export KBUILD_BUILD_HOST=ozip.my.id
         export KBUILD_BUILD_USER=mitsuaa
         make clean
