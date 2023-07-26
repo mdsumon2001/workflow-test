@@ -1,4 +1,4 @@
-name: Build Kernel
+name: Build KernelSU
 on:
   watch:
     types: [started]
@@ -29,7 +29,7 @@ jobs:
     - name: Kernel patch
       run: |
         cd $GITHUB_WORKSPACE
-        git clone https://github.com/Arafattex/workflow-test -b main patchsu
+        git clone https://github.com/ozipoetra/workflow-test -b main --depth=1 patchsu
         cd android-kernel
         git apply $GITHUB_WORKSPACE/patchsu/KernelSU.patch
   
