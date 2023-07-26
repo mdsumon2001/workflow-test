@@ -7,13 +7,11 @@ on:
 
 jobs:
   build:
-    name: Build Kernel by ${{ github.actor }}
+    name: Build KernelSU
     runs-on: ubuntu-latest
     container: ghcr.io/ozipoetra/docker:main
-    if: github.event.repository.owner.id == github.event.sender.id
     steps:
     - uses: actions/checkout@v3
-
     - name: Download Clang Toolchain
       run: |
         cd $GITHUB_WORKSPACE
