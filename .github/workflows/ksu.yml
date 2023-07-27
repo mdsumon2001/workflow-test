@@ -20,8 +20,8 @@ jobs:
         #git clone https://github.com/vijaymalav564/vortex-clang.git -b master --depth=1 clang
         git clone --depth=1 git://git.code.sf.net/p/gengkapak/clang-gengkapak clang
         #git clone --depth=1 https://gitlab.com/LeCmnGend/proton-clang.git -b clang-16 clang
-        git clone --depth=1 https://github.com/mvaisakh/gcc-arm64 gcc64
-        git clone --depth=1 https://github.com/mvaisakh/gcc-arm gcc32
+        #git clone --depth=1 https://github.com/mvaisakh/gcc-arm64 gcc64
+        #git clone --depth=1 https://github.com/mvaisakh/gcc-arm gcc32
 
     - name: Download kernel source
       run: |
@@ -45,7 +45,8 @@ jobs:
       run: |
         cd $GITHUB_WORKSPACE/android-kernel
         #export LC_ALL=C
-        export PATH=$GITHUB_WORKSPACE/clang/bin:$GITHUB_WORKSPACE/gcc64/bin:$GITHUB_WORKSPACE/gcc32/bin:$PATH
+        #export PATH=$GITHUB_WORKSPACE/clang/bin:$GITHUB_WORKSPACE/gcc64/bin:$GITHUB_WORKSPACE/gcc32/bin:$PATH
+        export PATH=$GITHUB_WORKSPACE/clang/bin:$PATH
         export ARCH=arm64
         export SUBARCH=arm64
         #export CLANG_TRIPLE=aarch64-linux-gnu-
@@ -63,7 +64,7 @@ jobs:
         make clean
         make mrproper
         make O=out merlin_defconfig
-        make -j$(nproc --all) O=out CC=clang CLANG_TRIPLE=aarch64-linux-gnu- CROSS_COMPILE=aarch64-elf- CROSS_COMPILE_COMPAT=arm-eabi-
+        make -j$(nproc --all) O=out CC=clang CROSS_COMPILE=aarch64-linux-gnu- CROSS_COMPILE_COMPAT=arm-linux-gnueabi- LD=ld.lld AR=llvm-ar NM=llvm-nm OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump STRIP=llvm-strip
 
     - name: Make Anykernel3
       run: |
