@@ -18,7 +18,7 @@ jobs:
         #unzip clang.zip -d clang
         #rm clang.zip
         #git clone https://github.com/vijaymalav564/vortex-clang.git -b master --depth=1 clang
-        #git clone --depth=1 git://git.code.sf.net/p/gengkapak/clang-gengkapak clang
+        git clone --depth=1 git://git.code.sf.net/p/gengkapak/clang-gengkapak clang
         #git clone --depth=1 https://gitlab.com/LeCmnGend/proton-clang.git -b clang-16 clang
         git clone --depth=1 https://github.com/mvaisakh/gcc-arm64 gcc64
         git clone --depth=1 https://github.com/mvaisakh/gcc-arm gcc32
@@ -58,12 +58,12 @@ jobs:
         export OBJCOPY=llvm-objcopy
         export OBJDUMP=llvm-objdump
         export STRIP=llvm-strip
-        export KBUILD_BUILD_HOST=ozip.my.id
-        export KBUILD_BUILD_USER=mitsuaa
+        export KBUILD_BUILD_HOST=GitHub
+        export KBUILD_BUILD_USER=mitsu00
         make clean
         make mrproper
         make O=out merlin_defconfig
-        make -j$(nproc --all) O=out CROSS_COMPILE=aarch64-elf- CROSS_COMPILE_COMPAT=arm-eabi-
+        make -j$(nproc --all) O=out CC=clang CLANG_TRIPLE=aarch64-linux-gnu- CROSS_COMPILE=aarch64-elf- CROSS_COMPILE_COMPAT=arm-eabi-
 
     - name: Make Anykernel3
       run: |
