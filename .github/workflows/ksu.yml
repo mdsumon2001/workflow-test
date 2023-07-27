@@ -45,7 +45,7 @@ jobs:
       run: |
         cd $GITHUB_WORKSPACE/android-kernel
         #export LC_ALL=C
-        export PATH=$GITHUB_WORKSPACE/gcc64/bin:$GITHUB_WORKSPACE/gcc32/bin:$PATH
+        export PATH=$GITHUB_WORKSPACE/clang/bin:$GITHUB_WORKSPACE/gcc64/bin:$GITHUB_WORKSPACE/gcc32/bin:$PATH
         export ARCH=arm64
         export SUBARCH=arm64
         #export CLANG_TRIPLE=aarch64-linux-gnu-
