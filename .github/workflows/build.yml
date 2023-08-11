@@ -19,7 +19,7 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE
           #git clone https://github.com/mt6768-dev/android_kernel_xiaomi_mt6768 -b lineage-20 --depth=1 kernel
-                  git clone https://github.com/mitsu00/kernel_xiaomi_mt6768 -b main --depth=1 --recursive kernel
+          git clone https://github.com/mitsu00/kernel_xiaomi_mt6768 -b main --depth=1 --recursive kernel
       # Download Clang
       - name: Clone Clang
         run: |
@@ -27,7 +27,8 @@ jobs:
           #wget -q https://github.com/mitsu00/build_test/releases/download/clang/clang.zip
           #unzip clang.zip -d clang
           #rm clang.zip
-          git clone --depth=1 git://git.code.sf.net/p/gengkapak/clang-gengkapak clang
+          #git clone --depth=1 git://git.code.sf.net/p/gengkapak/clang-gengkapak clang
+          git clone https://gitlab.com/XSans0/weebx-clang-test.git --depth=1 clang
           #git clone https://github.com/GengKapak/GengKapak-clang -b 12 --depth=1 clang
           #git clone https://github.com/kdrag0n/proton-clang -b master --depth=1 clang
           #git clone https://gitlab.com/mcdofrenchfreis/android-clang-14.0.7.git --depth=1 clang
