@@ -19,7 +19,7 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE
           #git clone https://github.com/mt6768-dev/android_kernel_xiaomi_mt6768 -b lineage-20 --depth=1 kernel
-          git clone https://github.com/mitsu00/kernel_xiaomi_mt6768 -b main --depth=1 --recursive kernel
+          git clone https://github.com/mitsu00/kernel_xiaomi_mt6768 -b staging --depth=1 --recursive kernel
       # Download Clang
       - name: Clone Clang
         run: |
