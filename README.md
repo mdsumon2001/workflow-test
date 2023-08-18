@@ -1,4 +1,4 @@
-# CI AOSP Build Test 
+# CI AOSP Build Test
 An GitHub Workflow to test your AOSP source with github Workflow
 
 ## How to Use?
