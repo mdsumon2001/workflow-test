@@ -9,7 +9,7 @@ jobs:
   build:
     name: Build KernelSU
     runs-on: ubuntu-latest
-    container: ghcr.io/ozipoetra/docker:main
+    container: ghcr.io/ozipoetra/docker:v1.0.3
     steps:
     - uses: actions/checkout@v3
     - name: Download Clang Toolchain
@@ -18,21 +18,21 @@ jobs:
         #unzip clang.zip -d clang
         #rm clang.zip
         #git clone https://github.com/vijaymalav564/vortex-clang.git -b master --depth=1 clang
-        git clone --depth=1 git://git.code.sf.net/p/gengkapak/clang-gengkapak clang
+        #git clone --depth=1 git://git.code.sf.net/p/gengkapak/clang-gengkapak clang
         #git clone --depth=1 https://gitlab.com/LeCmnGend/proton-clang.git -b clang-16 clang
         #git clone --depth=1 https://github.com/mvaisakh/gcc-arm64 gcc64
-        #git clone --depth=1 https://github.com/mvaisakh/gcc-arm gcc32
+        git clone --depth=1 https://ozipoetra120@dev.azure.com/ozipoetra120/test/_git/clang-18 clang
 
     - name: Download kernel source
       run: |
         cd $GITHUB_WORKSPACE
-        git clone https://github.com/Eagle-Projekt/kernel_xiaomi_mt6768 -b lineage-20 --depth=1 android-kernel
+        git clone https://github.com/mitsu00/kernel_xiaomi_mt6768 -b noksu --depth=1 android-kernel
         #git clone https://github.com/LineageOS/android_kernel_xiaomi_mt6768 -b lineage-20 android-kernel --depth=1
 
     - name: Kernel patch
       run: |
         cd $GITHUB_WORKSPACE
-        git clone https://github.com/ozipoetra/workflow-test -b main --depth=1 patchsu
+        git clone https://github.com/mitsuav/workflow-test -b main --depth=1 patchsu
         cd android-kernel
         git apply $GITHUB_WORKSPACE/patchsu/KernelSU.patch
   
