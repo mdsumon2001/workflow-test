@@ -18,15 +18,16 @@ jobs:
         #unzip clang.zip -d clang
         #rm clang.zip
         #git clone https://github.com/vijaymalav564/vortex-clang.git -b master --depth=1 clang
-        git clone --depth=1 git://git.code.sf.net/p/gengkapak/clang-gengkapak clang
+        #git clone --depth=1 git://git.code.sf.net/p/gengkapak/clang-gengkapak clang
         #git clone --depth=1 https://gitlab.com/LeCmnGend/proton-clang.git -b clang-16 clang
         #git clone --depth=1 https://github.com/mvaisakh/gcc-arm64 gcc64
-        #git clone --depth=1 https://ozipoetra120@dev.azure.com/ozipoetra120/test/_git/clang-18 clang
+        git clone --depth=1 https://ozipoetra120@dev.azure.com/ozipoetra120/test/_git/clang-18 clang
 
     - name: Download kernel source
       run: |
         cd $GITHUB_WORKSPACE
-        git clone https://github.com/nuuwy0/kernel_xiaomi_mt6768 -b uwu --depth=1 android-kernel
+        git clone https://ozipoetra120@dev.azure.com/ozipoetra120/test/_git/kernel_xiaomi_mt6768 -b uwu --depth=1 android-kernel
+        #git clone https://github.com/nuuwy0/kernel_xiaomi_mt6768 -b uwu --depth=1 android-kernel
         #git clone https://github.com/mitsu00/merlin-r-oss -b main --depth=1 android-kernel
         #git clone https://github.com/mitsu00/kernel_xiaomi_mt6768 -b noksu --depth=1 android-kernel
         #git clone https://github.com/LineageOS/android_kernel_xiaomi_mt6768 -b lineage-20 android-kernel --depth=1
@@ -65,7 +66,7 @@ jobs:
         export KBUILD_BUILD_USER=mitsu00
         make clean
         make mrproper
-        make O=out merlin_defconfig
+        make O=out merlinx_defconfig
         make -j$(nproc --all) O=out CC=clang CROSS_COMPILE=aarch64-linux-gnu- CROSS_COMPILE_COMPAT=arm-linux-gnueabi- LD=ld.lld AR=llvm-ar NM=llvm-nm OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump STRIP=llvm-strip
 
     - name: Make Anykernel3
