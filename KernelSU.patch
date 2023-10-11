@@ -1,5 +1,5 @@
 diff --git a/drivers/input/input.c b/drivers/input/input.c
-index f9f3d6261..de423faea 100644
+index f9f3d6261..de423faea 100755
 --- a/drivers/input/input.c
 +++ b/drivers/input/input.c
 @@ -377,11 +377,15 @@ static int input_get_disposition(struct input_dev *dev,
@@ -26,7 +26,7 @@ index f9f3d6261..de423faea 100644
 +module_exit(input_exit);
 \ No newline at end of file
 diff --git a/fs/exec.c b/fs/exec.c
-index ae0a49517..7e8044b9c 100644
+index ae0a49517..7e8044b9c 100755
 --- a/fs/exec.c
 +++ b/fs/exec.c
 @@ -1709,11 +1709,14 @@ static int exec_binprm(struct linux_binprm *bprm)
@@ -52,7 +52,7 @@ index ae0a49517..7e8044b9c 100644
 +#endif
 \ No newline at end of file
 diff --git a/fs/open.c b/fs/open.c
-index 3b62683fe..3b5da2919 100644
+index 3b62683fe..3b5da2919 100755
 --- a/fs/open.c
 +++ b/fs/open.c
 @@ -354,6 +354,8 @@ SYSCALL_DEFINE4(fallocate, int, fd, int, mode, loff_t, offset, loff_t, len)
@@ -80,7 +80,7 @@ index 3b62683fe..3b5da2919 100644
 +EXPORT_SYMBOL(stream_open);
 \ No newline at end of file
 diff --git a/fs/read_write.c b/fs/read_write.c
-index 0da6e4f19..9b56f491d 100644
+index 0da6e4f19..9b56f491d 100755
 --- a/fs/read_write.c
 +++ b/fs/read_write.c
 @@ -429,10 +429,14 @@ ssize_t kernel_read(struct file *file, void *buf, size_t count, loff_t *pos)
@@ -106,7 +106,7 @@ index 0da6e4f19..9b56f491d 100644
 +EXPORT_SYMBOL(vfs_dedupe_file_range);
 \ No newline at end of file
 diff --git a/fs/stat.c b/fs/stat.c
-index 0fda4b6b8..2b02b49bd 100644
+index 0fda4b6b8..2b02b49bd 100755
 --- a/fs/stat.c
 +++ b/fs/stat.c
 @@ -148,6 +148,8 @@ int vfs_statx_fd(unsigned int fd, struct kstat *stat,
