@@ -17,7 +17,7 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE
           #git clone https://github.com/mt6768-dev/android_kernel_xiaomi_mt6768 -b lineage-20 --depth=1 kernel
-          git clone https://github.com/mitsu00/kernel_xiaomi_mt6768 -b test --depth=1 --recursive kernel
+          git clone https://github.com/mdsumon2001/kernel_realme_RMX3061 -b master --depth=1 --recursive kernel
       # Download Clang
       - name: Clone Clang
         run: |
@@ -36,8 +36,8 @@ jobs:
         run: |
           #ccache -M 10G
           cd $GITHUB_WORKSPACE/kernel
-          export KBUILD_BUILD_HOST=ozip.my.id
-          export KBUILD_BUILD_USER=mitsuaa
+          export KBUILD_BUILD_HOST=ksu
+          export KBUILD_BUILD_USER=shakib
           export PATH=$GITHUB_WORKSPACE/clang/bin:$PATH
           export ARCH=arm64
           export SUBARCH=arm64
@@ -62,5 +62,5 @@ jobs:
         #if: env.CHECK_FILE_IS_OK == 'true'
         uses: actions/upload-artifact@v3
         with:
-          name: merlinx-kernel
+          name: rmx3061-kernel
           path: kernel/AnyKernel3/*
