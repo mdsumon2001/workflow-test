@@ -41,7 +41,7 @@ jobs:
           export PATH=$GITHUB_WORKSPACE/clang/bin:$PATH
           export ARCH=arm64
           export SUBARCH=arm64
-          make O=out merlin_defconfig
+          make O=out rmx3061_defconfig
           make -j$(nproc --all) O=out CC=clang CROSS_COMPILE=aarch64-linux-gnu- CROSS_COMPILE_COMPAT=arm-linux-gnueabi- LD=ld.lld AR=llvm-ar NM=llvm-nm OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump STRIP=llvm-strip
       - name: Make Anykernel3
         run: |
