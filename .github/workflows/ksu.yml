@@ -31,8 +31,9 @@ jobs:
         #git clone https://ozipoetra120@dev.azure.com/ozipoetra120/test/_git/kernel_xiaomi_mt6768 -b uwu --depth=1 android-kernel
         #git clone https://github.com/nuuwy0/kernel_xiaomi_mt6768 -b uwu --depth=1 android-kernel
         #git clone https://github.com/mitsu00/merlin-r-oss -b main --depth=1 android-kernel
-        git clone https://github.com/mitsu00/kernel_xiaomi_mt6768 -b noksu --depth=1 android-kernel
+        #git clone https://github.com/mitsu00/kernel_xiaomi_mt6768 -b noksu --depth=1 android-kernel
         #git clone https://github.com/LineageOS/android_kernel_xiaomi_mt6768 -b lineage-20 android-kernel --depth=1
+         git clone https://github.com/mdsumon2001/kernel_realme_RMX3061 -b master android-kernel --depth=1
 
     - name: Kernel patch
       run: |
@@ -66,8 +67,8 @@ jobs:
         export OBJCOPY=llvm-objcopy
         export OBJDUMP=llvm-objdump
         export STRIP=llvm-strip
-        export KBUILD_BUILD_HOST=GitHub
-        export KBUILD_BUILD_USER=mitsu00
+        export KBUILD_BUILD_HOST=ksu
+        export KBUILD_BUILD_USER=shakib
         make clean
         make mrproper
         make O=out merlin_defconfig
@@ -92,5 +93,5 @@ jobs:
     - name: Upload AnyKernel3
       uses: actions/upload-artifact@v3
       with:
-        name: merlinx-kernel-noc-ksu
+        name: rmx3061-kernel-noc-ksu
         path: AnyKernel3/*
