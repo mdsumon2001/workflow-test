@@ -33,7 +33,7 @@ jobs:
         #git clone https://github.com/mitsu00/merlin-r-oss -b main --depth=1 android-kernel
         #git clone https://github.com/mitsu00/kernel_xiaomi_mt6768 -b noksu --depth=1 android-kernel
         #git clone https://github.com/LineageOS/android_kernel_xiaomi_mt6768 -b lineage-20 android-kernel --depth=1
-         git clone https://github.com/mdsumon2001/kernel_realme_RMX3061 -b master android-kernel --depth=1
+         git clone https://github.com/realme-kernel-opensource/realme_C20-C21-AndroidQ-kernel-source -b master android-kernel --depth=1
 
     - name: Kernel patch
       run: |
