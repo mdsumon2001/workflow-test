@@ -25,11 +25,11 @@ jobs:
           #wget -q https://github.com/mitsu00/build_test/releases/download/clang/clang.zip
           #unzip clang.zip -d clang
           #rm clang.zip
-          git clone --depth=1 https://ozipoetra120@dev.azure.com/ozipoetra120/test/_git/clang-18 clang
+          #git clone --depth=1 https://ozipoetra120@dev.azure.com/ozipoetra120/test/_git/clang-18 clang
           #git clone --depth=1 git://git.code.sf.net/p/gengkapak/clang-gengkapak clang
           #git clone https://gitlab.com/XSans0/weebx-clang-test.git --depth=1 clang
           #git clone git://git.code.sf.net/p/gengkapak/clang-gengkapak gengkapak-clang-gengkapak -b main --depth=1 clang
-          #git clone https://github.com/kdrag0n/proton-clang -b master --depth=1 clang
+           git clone https://github.com/kdrag0n/proton-clang -b master --depth=1 clang
           #git clone https://gitlab.com/mcdofrenchfreis/android-clang-14.0.7.git --depth=1 clang
       # Build Test (You Can Edit This!)
       - name: Build Kernel
